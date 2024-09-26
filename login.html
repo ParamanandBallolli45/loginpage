@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-top: 15px;
+            color: red;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container" id="loginContainer">
+    <h2>Login</h2>
+    <input type="text" id="username" class="input-field" placeholder="Username">
+    <input type="password" id="password" class="input-field" placeholder="Password">
+    <button class="btn" onclick="validateLogin()">Login</button>
+    <p id="message" class="message"></p>
+</div>
+
+<script>
+    function validateLogin() {
+        const correctUsername = "user";
+        const correctPassword = "password";
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const message = document.getElementById('message');
+        const loginContainer = document.getElementById('loginContainer');
+        
+        if (username === correctUsername && password === correctPassword) {
+            message.style.color = 'green';
+            message.textContent = 'Login successful!';
+            message.classList.add('show');
+            
+            // Add a fade-out effect
+            loginContainer.style.transform = 'scale(0.9)';
+            loginContainer.style.opacity = '0';
+            
+            // Delay and redirect to the next page
+            setTimeout(() => {
+                window.location.href = "nextpage.html"; // Redirect to another page
+            }, 1500);
+            
+        } else {
+            message.style.color = 'red';
+            message.textContent = 'Incorrect credentials, please try again.';
+            message.classList.add('show');
+        }
+    }
+</script>
+
+</body>
+</html>
